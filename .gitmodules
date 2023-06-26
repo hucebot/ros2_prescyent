@@ -1,0 +1,3 @@
+[submodule "prescyent"]
+	path = prescyent
+	url = git@github.com:hucebot/prescyent.git
