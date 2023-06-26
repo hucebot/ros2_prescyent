@@ -9,8 +9,11 @@
 
   <buildtool_depend>ament_python</buildtool_depend>
 
+  <exec_depend>ros2launch</exec_depend>
+
   <exec_depend>rclpy</exec_depend>
   <exec_depend>prescyent_msg</exec_depend>
+  <exec_depend>prescyent</exec_depend>
   <exec_depend>easydict</exec_depend>
   <exec_depend>matplotlib</exec_depend>
   <exec_depend>numpy</exec_depend>
