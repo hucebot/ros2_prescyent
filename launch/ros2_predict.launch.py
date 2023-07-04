@@ -7,15 +7,15 @@ def generate_launch_description():
         [
             Node(
                 package="ros2_prescyent",
-                namespace="ros2_predict1",
-                executable="ros2_predict",
+                namespace="prescyent_predict",
+                executable="prescyent_predict",
                 name="predictor_node",
                 parameters=[
                     {
                         "predictor_path": "",
                         "history_size": 10,
                         "future_size": 10,
-                        "time_step": 10,
+                        "predictor_frequency": 10,
                     }
                 ],
             ),
