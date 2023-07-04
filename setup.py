@@ -25,7 +25,8 @@ setup(
     tests_require=["pytest"],
     entry_points={
         "console_scripts": [
-            "ros2_predict = ros2_prescyent.run_predictor_node:main",
+            "prescyent_predict = ros2_prescyent.run_predictor_node:main",
+            "prescyent_publish_poses = ros2_prescyent.example.publisher_node:main",
         ],
     },
 )
