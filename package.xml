@@ -12,7 +12,6 @@
   <exec_depend>ros2launch</exec_depend>
 
   <exec_depend>rclpy</exec_depend>
-  <exec_depend>prescyent_msg</exec_depend>
   <exec_depend>prescyent</exec_depend>
   <exec_depend>easydict</exec_depend>
   <exec_depend>matplotlib</exec_depend>
@@ -21,7 +20,6 @@
   <exec_depend>pytorch_lightning</exec_depend>
   <exec_depend>tensorboard</exec_depend>
   <exec_depend>torch</exec_depend>
-  <exec_depend>uvicorn</exec_depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
