@@ -21,6 +21,17 @@ source ~/.bashrc
 Launch with default params using `ros2 run ros2_prescyent ros2_predict`  
 You can also override default ros params using the ros2 launch command `ros2 launch ros2_prescyent ros2_predict.launch.py`  
 
+The predictor node is suscribing to PoseArray on topic `/prescyent/position`  
+The predictor node is publishing PoseArray at future_size * frequency on topic `/prescyent/prediction`  
+
+An example of a position publisher is provided at `example/predictor_node`  
+
+You can run this example node using `ros2 run ros2_prescyent prescyent_publish_poses`  
+
+## Docker
+
+We provide a dockerfile installing the prescyent library and building the ros2 nodes (total image size around 8gb)  
+
 # Ros2 Params
 |NAME|TYPE|DESCRIPTION|DEFAULT|
 | :--- | :----: | ---: | ---: |
