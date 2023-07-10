@@ -4,7 +4,7 @@ from typing import List
 from geometry_msgs.msg import PoseArray, Pose
 
 
-DEFAULT_FLOAT = -1.
+DEFAULT_FLOAT = -1.0
 
 
 def get_pose_from_list(pose_list: List[float]) -> Pose:
@@ -23,13 +23,20 @@ def get_pose_from_list(pose_list: List[float]) -> Pose:
 
 def get_list_from_pose(pose: Pose) -> List[float]:
     pose_list = []
-    if pose.position.x != DEFAULT_FLOAT: pose_list.append(pose.position.x)
-    if pose.position.y != DEFAULT_FLOAT: pose_list.append(pose.position.y)
-    if pose.position.z != DEFAULT_FLOAT: pose_list.append(pose.position.z)
-    if pose.orientation.x != DEFAULT_FLOAT: pose_list.append(pose.orientation.x)
-    if pose.orientation.y != DEFAULT_FLOAT: pose_list.append(pose.orientation.y)
-    if pose.orientation.z != DEFAULT_FLOAT: pose_list.append(pose.orientation.z)
-    if pose.orientation.w != DEFAULT_FLOAT: pose_list.append(pose.orientation.w)
+    if pose.position.x != DEFAULT_FLOAT:
+        pose_list.append(pose.position.x)
+    if pose.position.y != DEFAULT_FLOAT:
+        pose_list.append(pose.position.y)
+    if pose.position.z != DEFAULT_FLOAT:
+        pose_list.append(pose.position.z)
+    if pose.orientation.x != DEFAULT_FLOAT:
+        pose_list.append(pose.orientation.x)
+    if pose.orientation.y != DEFAULT_FLOAT:
+        pose_list.append(pose.orientation.y)
+    if pose.orientation.z != DEFAULT_FLOAT:
+        pose_list.append(pose.orientation.z)
+    if pose.orientation.w != DEFAULT_FLOAT:
+        pose_list.append(pose.orientation.w)
     return pose_list
 
 

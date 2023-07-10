@@ -20,7 +20,7 @@ def main(predictor_path=None, history_size=10, future_size=10, predictor_frequen
 
 if __name__ == "__main__":
     parser = ArgumentParser()
-    parser.add_argument("--predictor_path", default='')
+    parser.add_argument("--predictor_path", default="")
     parser.add_argument("--history_size", default=10)
     parser.add_argument("--future_size", default=10)
     parser.add_argument("--predictor_frequency", default=10)

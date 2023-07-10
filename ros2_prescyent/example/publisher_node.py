@@ -34,7 +34,9 @@ class PosePublisherNode(Node):
         self.get_logger().info("PosePublisher Node has been started.")
 
     def receive_prediction(self, prediction: PoseArray):
-        self.get_logger().info(f"Received prediction for frame \"{prediction.header.frame_id}\"")
+        self.get_logger().info(
+            f'Received prediction for frame "{prediction.header.frame_id}"'
+        )
 
     def publisher_callback(self):
         # as an example we loop over the first test trajectory
@@ -48,7 +50,7 @@ class PosePublisherNode(Node):
         pose_array.header.stamp = self.get_clock().now().to_msg()
         self.frame_counter += 1
         self.pose_publisher.publish(pose_array)
-        self.get_logger().info(f"Sent position for frame \"{str(self.frame_counter)}\"")
+        self.get_logger().info(f'Sent position for frame "{str(self.frame_counter)}"')
 
 
 def main():
@@ -64,7 +66,7 @@ def main():
         history_size=history_size,
         future_size=future_size,
         dimensions=dimensions,
-        subsampling_step=subsampling_step
+        subsampling_step=subsampling_step,
     )
     dataset = TeleopIcubDataset(dataset_config)
     print("OK")

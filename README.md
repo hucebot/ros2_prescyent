@@ -12,6 +12,7 @@ pip install .
 
 Then build this ros2 node in your ros2 workspace using:  
 ```bash
+rosdep install -i --from-path src --rosdistro humble -yr
 colcon build
 source ~/.bashrc
 ```

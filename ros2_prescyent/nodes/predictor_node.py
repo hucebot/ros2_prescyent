@@ -13,8 +13,11 @@ from rclpy.subscription import Subscription
 from prescyent.auto_predictor import get_predictor_from_path
 from prescyent.predictor.base_predictor import BasePredictor
 from prescyent.utils.errors import PredictorNotFound
-from ros2_prescyent.utils.pose_helper import (get_list_from_pose, get_list_from_posearray,
-                                              get_posearray_from_list)
+from ros2_prescyent.utils.pose_helper import (
+    get_list_from_pose,
+    get_list_from_posearray,
+    get_posearray_from_list,
+)
 from ros2_prescyent.utils.time_helper import get_duration_from_frequency, update_time
 
 
@@ -29,10 +32,12 @@ class PredictorNode(Node):
         predictor_path: str = None,
         future_size: int = None,
         history_size: int = None,
-        predictor_frequency: int = None
+        predictor_frequency: int = None,
     ):
         super().__init__("prescyent_predictor")
-        self._declare_parameters(predictor_path, future_size, history_size, predictor_frequency)
+        self._declare_parameters(
+            predictor_path, future_size, history_size, predictor_frequency
+        )
         self.add_on_set_parameters_callback(self.ros2param_update_callback)
         try:
             self.predictor = get_predictor_from_path(self.predictor_path)
@@ -83,7 +88,9 @@ class PredictorNode(Node):
                     return SetParametersResult(successful=False)
         return SetParametersResult(successful=True)
 
-    def _declare_parameters(self, predictor_path, future_size, history_size, predictor_frequency):
+    def _declare_parameters(
+        self, predictor_path, future_size, history_size, predictor_frequency
+    ):
         default_predictor_path = predictor_path if predictor_path else ""
         default_future_size = future_size if future_size else 10
         default_history_size = history_size if history_size else 10
@@ -116,9 +123,13 @@ class PredictorNode(Node):
         )
         self.get_logger().info(f"Using ros2 param: history_size = {self.history_size}")
         self.get_logger().info(f"Using ros2 param: future_size = {self.future_size}")
-        self.get_logger().info(f"Using ros2 param: predictor_frequency = {self.predictor_frequency}")
+        self.get_logger().info(
+            f"Using ros2 param: predictor_frequency = {self.predictor_frequency}"
+        )
 
-    def get_tensor_from_trajectory(self, pose_array_list: List[PoseArray]) -> torch.Tensor:
+    def get_tensor_from_trajectory(
+        self, pose_array_list: List[PoseArray]
+    ) -> torch.Tensor:
         pose_tensor = []
         for pose_array in pose_array_list:
             for pose in pose_array.poses:
@@ -138,9 +149,9 @@ class PredictorNode(Node):
         pose_array = get_posearray_from_list(prediction)
         secs, nanosecs = get_duration_from_frequency(self.predictor_frequency)
         secs, nanosecs = secs * seq_len, nanosecs * seq_len
-        pose_array.header.stamp = update_time(time=last_stamp,
-                                                seconds=secs,
-                                                nanoseconds=nanosecs)
+        pose_array.header.stamp = update_time(
+            time=last_stamp, seconds=secs, nanoseconds=nanosecs
+        )
         pose_array.header.frame_id = str(last_frame_id + seq_len)
         return pose_array
 
@@ -150,7 +161,9 @@ class PredictorNode(Node):
             self._pose_buffer.pop(0)
         if len(self._pose_buffer) == self.history_size:
             pose_buffer = copy.deepcopy(self._pose_buffer)
-            history = torch.Tensor([get_list_from_posearray(pose) for pose in pose_buffer])
+            history = torch.Tensor(
+                [get_list_from_posearray(pose) for pose in pose_buffer]
+            )
             prediction = self.predictor.predict(history, future_size=self.future_size)
             self.prediction_publisher.publish(
                 self.get_trajectory_from_tensor(prediction, pose_buffer)

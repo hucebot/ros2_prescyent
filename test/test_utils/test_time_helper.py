@@ -1,12 +1,14 @@
 from unittest import TestCase
 
-from ros2_prescyent.utils.time_helper import (get_sec_nano_tuple_from_sec,
-                                             get_duration_from_frequency,
-                                             update_time, Time)
+from ros2_prescyent.utils.time_helper import (
+    get_sec_nano_tuple_from_sec,
+    get_duration_from_frequency,
+    update_time,
+    Time,
+)
 
 
 class TimeHelperTest(TestCase):
-
     def test_zero_sec_to_tuple(self):
         self.assertEquals((0, 0), get_sec_nano_tuple_from_sec(0.0))
         self.assertEquals((1, 0), get_sec_nano_tuple_from_sec(1.0))
